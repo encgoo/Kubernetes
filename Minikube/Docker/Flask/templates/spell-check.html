@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spell Check</title>
+</head>
+<body>
+<h1>Spell Check</h1>
+Using <a href="ttp://codekata.com/kata/kata05-bloom-filters/">Bloom Filter</a> to do spell check. The word is checked
+against the dictionary on Debian 9 (/usr/share/dict/words).
+<br>
+<br>
+
+<form action="/check" method="post">
+    Word:
+    <input name="word">
+    <input type="submit" value="Check">
+</form>
+<br>
+<br>
+<h2>Result</h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+</body>
+</html>
