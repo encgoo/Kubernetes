@@ -75,7 +75,8 @@ For our example here, open a browser and visit http://localhost:30471/check
 9. To test the RESTful API, use this curl command
 
     ```curl http://127.0.0.1:30471/api/v1.0/check?word=quark```
-![curl](images/minikube_curl.png)
+    
+    ![curl](images/minikube_curl.png)
 
     _NOTE_: minicube is not very stable in supporting curl. At the beginning, we
 were able to test the RESTful endpoint using a browser, but curl hung all the time.
