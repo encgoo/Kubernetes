@@ -34,34 +34,56 @@ This is running on virtual machine of Debian 9 using virtualbox. To setup miniku
 installing kubectl as well. 
 
 ### Steps
-1. Make sure you follow the steps in the Approach section above to build and test the docker image. Run ```docker image ls```
-and you shall see scweb is listed there.
+1. Make sure you follow the steps in the Approach section above to build and test the docker image. 
+Run 
+
+    ```docker image ls```
+
+    and you shall see scweb is listed there.
 2. Start minikube. Since we are using virtual machine, need to start it with vm_driver=none as suggested by 
 this [post](https://medium.com/@vovaprivalov/setup-minikube-on-virtualbox-7cba363ca3bc).
-```sudo -E minikube start --vm-driver=none```
 
-Use ```kubectl cluster-info``` to make sure minikube is running.
-3. Run a node ```kubectl run my-node --image=scweb --port=5000 --image-pull-policy=Never```
-4. Check deployment ```kubectl get deployments```
-5. Check pods ```kubectl get pods```
-6. Create a servide ```kubectl expose deployment my-node --type=LoadBalancer```
-7. Check service ```kubectl get services``` Take note of the PORT(S) of my-node. 
+    ```sudo -E minikube start --vm-driver=none```
+
+    Use 
+    
+    ```kubectl cluster-info``` 
+    
+    to make sure minikube is running.
+3. Run a node 
+    
+    ```kubectl run my-node --image=scweb --port=5000 --image-pull-policy=Never```
+4. Check deployment 
+
+    ```kubectl get deployments```
+5. Check pods 
+
+    ```kubectl get pods```
+6. Create a servide 
+
+    ```kubectl expose deployment my-node --type=LoadBalancer```
+7. Check service 
+    
+    ```kubectl get services``` 
+    
+    Take note of the PORT(S) of my-node. 
 ![screenshot](images/ports.png)
-In this example, port 30471 is mapped to the port 5000 of the docker container. 
+    In this example, port 30471 is mapped to the port 5000 of the docker container. 
 8. Use the port information above to test the deployment/service. 
-For our example here, use http://localhost:30471/check
+For our example here, open a browser and visit http://localhost:30471/check
 
-To test the RESTful API, use this curl command
-```curl http://127.0.0.1:30471/api/v1.0/check?word=quark```
+9. To test the RESTful API, use this curl command
+
+    ```curl http://127.0.0.1:30471/api/v1.0/check?word=quark```
 ![curl](images/minikube_curl.png)
 
-_NOTE_: minicube is not very stable in supporting curl. At the beginning, we
+    _NOTE_: minicube is not very stable in supporting curl. At the beginning, we
 were able to test the RESTful endpoint using a browser, but curl hung all the time.
 Then we just run 
 
-```minikube service my-node --url``` 
+    ```minikube service my-node --url``` 
 
-This command shows correctly the url for the service. From then on, the curl command works.
+    This command shows correctly the url for the service. From then on, the curl command works.
 This could be related to this [bug](https://github.com/kubernetes/minikube/issues/1419).
 
 ### Stop and clean up
