@@ -8,6 +8,13 @@ This is a POC project for using Kubernetes/Docker/Flask API. Dependencies
 The above techniques are used to demo an online spell checker 
 implemented using [bloom filter](Minikube/Docker/Flask/BloomFilter/README.md) in python.
 
+## Final product
+This is how the final POC looks like.
+## Web service 
+![web](Minikube/Docker/Flask/images/SpellCheck.png)
+## RESTful API
+![curl](images/minikube_curl.png)
+
 ## Project structure 
 The structure of this repo
 * Minikube
@@ -71,7 +78,7 @@ this [post](https://medium.com/@vovaprivalov/setup-minikube-on-virtualbox-7cba36
     In this example, port 30471 is mapped to the port 5000 of the docker container. 
 8. Use the port information above to test the deployment/service. 
 For our example here, open a browser and visit http://localhost:30471/check
-
+    ![web](Minikube/Docker/Flask/images/SpellCheck.png)
 9. To test the RESTful API, use this curl command
 
     ```curl http://127.0.0.1:30471/api/v1.0/check?word=quark```
