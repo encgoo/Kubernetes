@@ -6,7 +6,7 @@ This is a POC project for using Kubernetes/Docker/Flask API. Dependencies
 * python Flask, for web service and RESTful API service
 
 The above techniques are used to demo an online spell checker 
-implemented using butterfly filter in python.
+implemented using [bloom filter](Minikube/Docker/Flask/BloomFilter/README.md) in python.
 
 ## Project structure 
 The structure of this repo
@@ -16,12 +16,13 @@ The structure of this repo
             * BloomFilter
             
 ## Approach
-Do it from inside out. 
-1. First go to the BloomFilter folder to test the bloom filter as a standalone python program. 
-Make sure you can generate a bitmap.bin file. This file is used by others.
-2. Go to the Flask folder, make sure you can use the bloomfilter from a flask server
-3. Go to the Docker folder, make sure you can use the flask server in a docker container.
-4. Back to this folder, and try Kubernetes.
+To use this POC, do it from inside out. 
+1. First go to the [BloomFilter](Minikube/Docker/Flask/BloomFilter) folder to test the bloom filter as a standalone python program. 
+Make sure you can generate a bitmap.bin file. This file will be used by the final program.
+2. Go to the [Flask](Minikube/Docker/Flask) folder, make sure you can use the bloomfilter from a flask server, serving both
+web and RESTful API.
+3. Go to the [Docker](Minikube/Docker) folder, make sure you can make a docker image and use the flask server in a docker container.
+4. Finally back to this folder, and try Kubernetes.
 
 ## Minikube
 Here we follow this [post](https://linuxhint.com/kubernetes-getting-started/) and use Minikube on Linux to create
