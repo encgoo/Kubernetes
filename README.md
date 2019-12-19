@@ -8,11 +8,11 @@ This is a POC project for using Kubernetes/Docker/Flask API. Dependencies
 The above techniques are used to demo an online spell checker 
 implemented using [bloom filter](Minikube/Docker/Flask/BloomFilter/README.md) in python.
 
-## Final product
-This is how the final POC looks like.
-## Web service 
+## Final output
+This is how the POC looks like.
+### Web service 
 ![web](Minikube/Docker/Flask/images/SpellCheck.png)
-## RESTful API
+### RESTful API
 ![curl](images/minikube_curl.png)
 
 ## Project structure 
