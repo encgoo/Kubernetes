@@ -9,7 +9,7 @@ The above techniques are used to demo an online spell checker
 implemented using [bloom filter](Minikube/Docker/Flask/BloomFilter/README.md) in python.
 
 ## Final output
-The output of this POC is a python Flask server running is a docker container hosted in a local
+The output of this POC is a python Flask server running in a docker container hosted in a local
 Kubernetes cluster managed by minikube.
 
 User can use the online spell checker via a browser or through the RESTful API.
