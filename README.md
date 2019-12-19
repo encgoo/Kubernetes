@@ -3,7 +3,7 @@
 This is a POC project for using Kubernetes/Docker/Flask API. Dependencies
 * Minikube
 * Docker
-* python Flask
+* python Flask, for web service and RESTful API service
 
 The above techniques are used to demo an online spell checker 
 implemented using butterfly filter in python.
@@ -43,12 +43,25 @@ Use ```kubectl cluster-info``` to make sure minikube is running.
 3. Run a node ```kubectl run my-node --image=scweb --port=5000 --image-pull-policy=Never```
 4. Check deployment ```kubectl get deployments```
 5. Check pods ```kubectl get pods```
-6. Create a servide ```kubectl expose deploment my-node --type=LoadBalancer```
+6. Create a servide ```kubectl expose deployment my-node --type=LoadBalancer```
 7. Check service ```kubectl get services``` Take note of the PORT(S) of my-node. 
 ![screenshot](images/ports.png)
 In this example, port 30471 is mapped to the port 5000 of the docker container. 
 8. Use the port information above to test the deployment/service. 
 For our example here, use http://localhost:30471/check
+
+To test the RESTful API, use this curl command
+```curl http://127.0.0.1:30471/api/v1.0/check?word=quark```
+![curl](images/minikube_curl.png)
+
+_NOTE_: minicube is not very stable in supporting curl. At the beginning, we
+were able to test the RESTful endpoint using a browser, but curl hung all the time.
+Then we just run 
+
+```minikube service my-node --url``` 
+
+This command shows correctly the url for the service. From then on, the curl command works.
+This could be related to this [bug](https://github.com/kubernetes/minikube/issues/1419).
 
 ### Stop and clean up
 ```kubectl delete service my-node```

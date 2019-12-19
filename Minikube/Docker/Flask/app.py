@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template, flash, jsonify
 from BloomFilter.bloom_filter import BloomFilter
 
 app = Flask(__name__)
@@ -20,6 +20,7 @@ def about():
 def check():
     return render_template("./spell-check.html")
 
+
 @app.route("/check", methods=['POST'])
 def check_word():
     b_filter = BloomFilter(filename="BloomFilter/bitmap.bin")
@@ -35,6 +36,31 @@ def check_word():
         flash("Please enter a word")
 
     return render_template("./spell-check.html")
+
+
+@app.route("/api/v1.0/check", methods=["GET"])
+def check_word_api():
+    b_filter = BloomFilter(filename="BloomFilter/bitmap.bin")
+    word = request.args.get("word", None)
+    ret = {
+        "num_checksums": 2,
+        "checksums":[
+            "md5",
+            "sha256"
+        ],
+        "word": "",
+        "found": "False"
+    }
+    if word:
+        good = b_filter.check_word(word, num_checksum=2)
+        ret["word"] = word
+        if good:
+            ret["found"] = "True"
+        else:
+            ret["found"] = "False"
+
+    return jsonify(ret)
+
 
 if __name__=="__main__":
     if __package__ is None:
